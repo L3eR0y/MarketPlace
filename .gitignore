@@ -2,7 +2,7 @@
 node_modules
 /dist
 .hystory
-
+.prettierrc.json
 
 # local env files
 .env.local
