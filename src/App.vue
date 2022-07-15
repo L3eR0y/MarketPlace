@@ -27,18 +27,18 @@ export default class App extends Vue {
         for (const good of goods_by_group) {
           if (acc[key]) {
             // let product_by_id = acc[key].products?.[good.product_id];
-            if (acc[key].products?.[good.product_id]) {
+            if (val?.products?.[good.product_id]) {
               acc[key].products[good.product_id] = {
-                ...acc[key].products?.[good.product_id],
+                ...val.products?.[good.product_id],
                 ...good,
               };
             }
           } else {
-            acc[key] = val;
+            acc[key] = { ...val, products: {} };
             // let product_by_id = acc[key].products?.[good.product_id];
-            if (acc[key].products?.[good.product_id]) {
+            if (val?.products?.[good.product_id]) {
               acc[key].products[good.product_id] = {
-                ...acc[key].products?.[good.product_id],
+                ...val.products?.[good.product_id],
                 ...good,
               };
             }
@@ -60,6 +60,11 @@ export default class App extends Vue {
     font-size: 100%;
     background-color: rgb(62, 68, 80);
   }
+
+.separator {
+  height: 1px;
+  width: 100%;
+}
 
 
 #app
