@@ -22,10 +22,11 @@ export default class MarketPlaceGoodsListItem extends Vue {
   border: 1px black solid;
   display: flex;
   flex-direction: row;
-  margin: 5px 0px;
+  margin-bottom: 2px;
   align-items: center;
 
   &__title {
+    display: flex;
     width: 70%;
     font-size: 1rem;
   }

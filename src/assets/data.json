@@ -1,0 +1,117 @@
+{
+  "Error": "",
+  "Id": 0,
+  "Success": true,
+  "Value": {
+    "Goods": [
+      {
+        "B": false,
+        "cost": 158,
+        "CV": null,
+        "group_id": 1,
+        "count": 1,
+        "Pl": null,
+        "product_id": 1
+      },
+      {
+        "B": false,
+        "cost": 197,
+        "CV": null,
+        "group_id": 1,
+        "count": 99,
+        "Pl": null,
+        "product_id": 2
+      },
+      {
+        "B": false,
+        "cost": 18,
+        "CV": null,
+        "group_id": 1,
+        "count": 31,
+        "Pl": null,
+        "product_id": 3
+      },
+      {
+        "B": false,
+        "cost": 2.14,
+        "CV": null,
+        "group_id": 2,
+        "count": 15,
+        "Pl": null,
+        "product_id": 8
+      },
+      {
+        "B": false,
+        "cost": 1.52,
+        "CV": null,
+        "group_id": 2,
+        "count": 76,
+        "Pl": null,
+        "product_id": 86
+      },
+      {
+        "B": false,
+        "cost": 5.5,
+        "CV": null,
+        "group_id": 2,
+        "count": 100,
+        "Pl": null,
+        "product_id": 126
+      },
+      {
+        "B": false,
+        "cost": 2.71,
+        "CV": null,
+        "group_id": 5,
+        "count": 51,
+        "Pl": null,
+        "product_id": 184
+      },
+      {
+        "B": false,
+        "cost": 3.95,
+        "CV": null,
+        "group_id": 5,
+        "count": 2,
+        "Pl": null,
+        "product_id": 185
+      },
+      {
+        "B": false,
+        "cost": 1.22,
+        "CV": null,
+        "group_id": 10,
+        "count": 51,
+        "Pl": null,
+        "product_id": 194
+      },
+      {
+        "B": false,
+        "cost": 1.18,
+        "CV": null,
+        "group_id": 15,
+        "count": 55,
+        "Pl": null,
+        "product_id": 12
+      },
+      {
+        "B": false,
+        "cost": 1.55,
+        "CV": null,
+        "group_id": 15,
+        "count": 64,
+        "Pl": null,
+        "product_id": 63
+      },
+      {
+        "B": false,
+        "cost": 1.55,
+        "CV": null,
+        "group_id": 15,
+        "count": 77,
+        "Pl": null,
+        "product_id": 64
+      }
+    ]
+  }
+}

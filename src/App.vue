@@ -1,38 +1,53 @@
 <template>
   <div id="app">
+    <market-place-header :title="header_title" />
     <market-place-goods :goods="goods" />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import data from './assets/data.json';
+import names from './assets/names.json';
 
 @Component({})
 export default class App extends Vue {
-  goods = [
-    {
-      type: 'Books',
-      id: 1,
-      price: 100,
-    },
-    {
-      type: 'Books 2',
-      id: 2,
-      price: 20,
-    },
-    {
-      type: 'Books 3',
-      id: 3,
-      price: 400,
-    },
-    {
-      type: 'Books 4',
-      id: 4,
-      price: 7,
-    },
-  ];
+  header_title = 'MARKET PLACE';
+  goods: { [key: string]: any } = [];
   created() {
-    console.log('AppCreated');
+    this.getGoods();
+  }
+
+  getGoods() {
+    this.goods = Object.entries(names)?.reduce(
+      (acc: { [key: string]: any }, [key, val]) => {
+        let goods_by_group = data?.Value?.Goods.filter(
+          (item) => item.group_id.toString() == key
+        );
+        for (const good of goods_by_group) {
+          if (acc[key]) {
+            // let product_by_id = acc[key].products?.[good.product_id];
+            if (acc[key].products?.[good.product_id]) {
+              acc[key].products[good.product_id] = {
+                ...acc[key].products?.[good.product_id],
+                ...good,
+              };
+            }
+          } else {
+            acc[key] = val;
+            // let product_by_id = acc[key].products?.[good.product_id];
+            if (acc[key].products?.[good.product_id]) {
+              acc[key].products[good.product_id] = {
+                ...acc[key].products?.[good.product_id],
+                ...good,
+              };
+            }
+          }
+        }
+        return acc;
+      },
+      {}
+    );
   }
 }
 </script>
@@ -43,6 +58,7 @@ export default class App extends Vue {
     margin: 0px;
     box-sizing: border-box;
     font-size: 100%;
+    background-color: rgb(62, 68, 80);
   }
 
 
