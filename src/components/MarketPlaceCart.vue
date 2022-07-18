@@ -4,14 +4,31 @@
       <div class="cart__title-container__title">CART</div>
     </div>
     <div class="cart__products-container">
+      <div class="cart__products-container__table-header">
+        <div class="cart__products-container__table-header__item">
+          Наименование
+        </div>
+        <div class="cart__products-container__table-header__item">
+          Количество
+        </div>
+        <div class="cart__products-container__table-header__item">Цена</div>
+        <div class="cart__products-container__table-header__item"></div>
+      </div>
       <template v-for="product in goods_list">
         <div class="cart__products-container__product" :key="product.id">
           <div class="cart__products-container__product__name">
             {{ product.product_name }}
           </div>
           <div>
-            <div class="cart__products-container_product__name">
-              {{ `${product.cost} руб/шт` }}
+            <div class="cart__products-container__product__name">
+              {{ `${getPrice(product.cost)} руб/шт` }}
+            </div>
+            <div class="cart__products-container__product__delete-btn">
+              <mp-btn
+                :bg-color="'red'"
+                :label="'Удалить'"
+                @click="onDeleteClick(product)"
+              ></mp-btn>
             </div>
           </div>
         </div>
@@ -33,18 +50,28 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Model, Prop, Vue } from 'vue-property-decorator';
 @Component
 export default class MarketPlaceCart extends Vue {
-  @Prop() goods_list!: { [key: string]: any }[];
+  @Model('change') goods_list!: { [key: string]: any }[];
+  dollar = 30.5;
 
   get total_price() {
     return this.goods_list.reduce((acc, val) => {
       if (val.cost) {
-        acc += val.cost;
+        acc += val.cost * this.dollar;
       }
       return acc;
     }, 0);
+  }
+
+  getPrice(cost: number) {
+    return cost * this.dollar;
+  }
+
+  onDeleteClick(product: any) {
+    // this.goods_list = [];
+    this.$emit('change', []);
   }
 }
 </script>
@@ -65,6 +92,29 @@ export default class MarketPlaceCart extends Vue {
   flex-direction: column;
   right: 0;
   top: 0;
+
+  &__products-container__table-header {
+    display: flex;
+    background-color: #ffffff;
+
+    &__item {
+      flex-grow: 1;
+      border-right: 1px black solid;
+      border-top: 1px black solid;
+      border-bottom: 1px black solid;
+      background-color: transparent;
+      color: rgb(62, 68, 80);
+    }
+
+    &__item:first-child {
+      flex-grow: 2;
+      border-right: 1px black solid;
+      border-top: 1px black solid;
+      border-bottom: 1px black solid;
+      background-color: transparent;
+      color: rgb(62, 68, 80);
+    }
+  }
 
   &__title-container {
     @extend .container;
@@ -88,10 +138,16 @@ export default class MarketPlaceCart extends Vue {
 
     &__product {
       &__name {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        // white-space: nowrap;
+        // overflow: hidden;
+        // text-overflow: ellipsis;
       }
+
+      // &__delete-btn{
+      //   display: flex;
+      //   justify-content: center;
+      //   align-items:center;
+      // }
     }
 
 

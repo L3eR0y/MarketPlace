@@ -3,7 +3,7 @@
     <market-place-header :title="header_title" />
     <div class="content-container">
       <market-place-goods :goods="goods" @add-to-cart="onAddToCart" />
-      <market-place-cart :goods_list="selected_goods" />
+      <market-place-cart v-model="selected_goods" />
     </div>
   </div>
 </template>
@@ -55,7 +55,13 @@ export default class App extends Vue {
   }
 
   onAddToCart(product: any) {
-    product ? this.selected_goods.push(product) : void 0;
+    console.log('PRODUCTS: ', product);
+    let _exist = this.selected_goods.findIndex(
+      (item) => item._id === product._id
+    );
+    if (_exist === -1) {
+      this.selected_goods.push(product);
+    }
   }
 }
 </script>
@@ -72,7 +78,7 @@ export default class App extends Vue {
     margin: 0px;
     box-sizing: border-box;
     font-size: 100%;
-    background-color: rgb(62, 68, 80);
+
   }
 
 .separator {
@@ -87,5 +93,6 @@ export default class App extends Vue {
   -moz-osx-font-smoothing grayscale
   text-align center
   color #2c3e50
+  background-color: rgb(62, 68, 80)
   margin: 0px
 </style>
