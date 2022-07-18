@@ -26,7 +26,7 @@ export default class MarketPlaceGoods extends Vue {
   }
 
   onAddToCart(product: any) {
-    this.$emit('add-to-cart', product);
+    this.$store.commit('addProductToCart', product);
   }
 }
 </script>

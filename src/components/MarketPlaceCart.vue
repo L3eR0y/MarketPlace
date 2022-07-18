@@ -53,25 +53,35 @@
 import { Component, Model, Prop, Vue } from 'vue-property-decorator';
 @Component
 export default class MarketPlaceCart extends Vue {
-  @Model('change') goods_list!: { [key: string]: any }[];
-  dollar = 30.5;
+  // @Model('change') goods_list!: { [key: string]: any }[];
+
+  get goods_list() {
+    return this.$store.getters?.cartProducts;
+  }
 
   get total_price() {
-    return this.goods_list.reduce((acc, val) => {
-      if (val.cost) {
-        acc += val.cost * this.dollar;
-      }
-      return acc;
-    }, 0);
+    let sum = this.goods_list.reduce(
+      (acc: number, val: { [key: string]: any }) => {
+        if (val.cost) {
+          acc += val.cost;
+        }
+        return acc;
+      },
+      0
+    );
+    return sum * this.dollar_rate;
+  }
+
+  get dollar_rate() {
+    return this.$store.getters?.dollarRate;
   }
 
   getPrice(cost: number) {
-    return cost * this.dollar;
+    return cost * this.dollar_rate;
   }
 
   onDeleteClick(product: any) {
-    // this.goods_list = [];
-    this.$emit('change', []);
+    this.$store.commit('deleteProductFromCartByIndex', product._id);
   }
 }
 </script>
