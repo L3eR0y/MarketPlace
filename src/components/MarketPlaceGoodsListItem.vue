@@ -1,11 +1,11 @@
 <template>
-  <div class="goods-list-item">
+  <div class="goods-list-item" @click="onListItemClick(value)">
     <div class="goods-list-item__title-container">
       <div>{{ value.product_name }}</div>
     </div>
     <div class="goods-list-item__price-container">
       <div class="goods-list-item__price-container__cost">
-        {{ value.cost ? value.cost : '  ' }}
+        {{ value.cost }}
       </div>
     </div>
   </div>
@@ -17,8 +17,8 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 export default class MarketPlaceGoodsListItem extends Vue {
   @Prop() value!: { [key: string]: any };
 
-  created() {
-    console.log('GoodItem Created');
+  onListItemClick(product: any) {
+    this.$emit('click', product);
   }
 }
 </script>
@@ -35,6 +35,7 @@ export default class MarketPlaceGoodsListItem extends Vue {
   display: flex;
   flex-direction: row;
   align-items: center;
+  cursor: pointer;
 
   &__title-container {
     @extend .container

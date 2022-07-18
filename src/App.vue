@@ -1,7 +1,10 @@
 <template>
   <div id="app">
     <market-place-header :title="header_title" />
-    <market-place-goods :goods="goods" />
+    <div class="content-container">
+      <market-place-goods :goods="goods" @add-to-cart="onAddToCart" />
+      <market-place-cart :goods_list="selected_goods" />
+    </div>
   </div>
 </template>
 
@@ -14,6 +17,7 @@ import names from './assets/names.json';
 export default class App extends Vue {
   header_title = 'MARKET PLACE';
   goods: { [key: string]: any } = [];
+  selected_goods: { [key: string]: any }[] = [];
   created() {
     this.getGoods();
   }
@@ -49,10 +53,20 @@ export default class App extends Vue {
       {}
     );
   }
+
+  onAddToCart(product: any) {
+    product ? this.selected_goods.push(product) : void 0;
+  }
 }
 </script>
 
 <style lang="stylus">
+.content-container {
+  width: 100%;
+  height: calc(100vh - 7vh);
+  display: flex;
+}
+
 * {
     padding 0px;
     margin: 0px;

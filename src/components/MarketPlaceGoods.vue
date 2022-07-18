@@ -1,10 +1,14 @@
 <template>
-  <div>
+  <div class="goods">
     <template v-for="good in goods">
       <div class="goods-list" :key="good.group_name">
         <div class="goods-list__title">{{ good.group_name }}</div>
         <template v-for="product in good.products">
-          <market-place-goods-list-item :value="product" :key="product.id" />
+          <market-place-goods-list-item
+            @click="onAddToCart"
+            :value="product"
+            :key="product.id"
+          />
         </template>
       </div>
     </template>
@@ -20,10 +24,17 @@ export default class MarketPlaceGoods extends Vue {
   created() {
     console.log('Created Component', this.goods);
   }
+
+  onAddToCart(product: any) {
+    this.$emit('add-to-cart', product);
+  }
 }
 </script>
 
 <style lang="stylus">
+.goods {
+  flex-grow: 1;
+}
 .goods-list {
   display: flex;
   flex-direction: column;
