@@ -27,6 +27,5 @@ export default class MarketPlaceButton extends Vue {
   border-radius: 3px;
   padding: 4px 16px;
   cursor: pointer;
-  margin: 8px 0px 0px 0px;
 }
 </style>

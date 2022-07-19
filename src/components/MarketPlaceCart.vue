@@ -4,34 +4,8 @@
       <div class="cart__title-container__title">CART</div>
     </div>
     <div class="cart__products-container">
-      <div class="cart__products-container__table-header">
-        <div class="cart__products-container__table-header__item">
-          Наименование
-        </div>
-        <div class="cart__products-container__table-header__item">
-          Количество
-        </div>
-        <div class="cart__products-container__table-header__item">Цена</div>
-        <div class="cart__products-container__table-header__item"></div>
-      </div>
       <template v-for="product in goods_list">
-        <div class="cart__products-container__product" :key="product.id">
-          <div class="cart__products-container__product__name">
-            {{ product.product_name }}
-          </div>
-          <div>
-            <div class="cart__products-container__product__name">
-              {{ `${getPrice(product.cost)} руб/шт` }}
-            </div>
-            <div class="cart__products-container__product__delete-btn">
-              <mp-btn
-                :bg-color="'red'"
-                :label="'Удалить'"
-                @click="onDeleteClick(product)"
-              ></mp-btn>
-            </div>
-          </div>
-        </div>
+        <mp-cart-item :product="product" :key="product._id" />
       </template>
     </div>
     <div class="cart__total-price-container">
@@ -74,14 +48,6 @@ export default class MarketPlaceCart extends Vue {
 
   get dollar_rate() {
     return this.$store.getters?.dollarRate;
-  }
-
-  getPrice(cost: number) {
-    return cost * this.dollar_rate;
-  }
-
-  onDeleteClick(product: any) {
-    this.$store.commit('deleteProductFromCartByIndex', product._id);
   }
 }
 </script>
@@ -145,22 +111,6 @@ export default class MarketPlaceCart extends Vue {
     @extend .container
     flex-direction: column;
     flex-grow: 1;
-
-    &__product {
-      &__name {
-        // white-space: nowrap;
-        // overflow: hidden;
-        // text-overflow: ellipsis;
-      }
-
-      // &__delete-btn{
-      //   display: flex;
-      //   justify-content: center;
-      //   align-items:center;
-      // }
-    }
-
-
   }
 
   &__total-price-container {
