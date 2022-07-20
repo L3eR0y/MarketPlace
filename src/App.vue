@@ -77,14 +77,7 @@ export default class App extends Vue {
     padding 0px;
     margin: 0px;
     box-sizing: border-box;
-    font-size: 100%;
-
   }
-
-.separator {
-  height: 1px;
-  width: 100%;
-}
 
 
 #app

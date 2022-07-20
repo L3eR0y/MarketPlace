@@ -134,10 +134,5 @@ export default class MarketPlaceCartProductCard extends Vue {
     background-color: #f5f4f4;
   }
 
-  // &__delete-btn{
-  //   display: flex;
-  //   justify-content: center;
-  //   align-items:center;
-  // }
 }
 </style>
