@@ -25,6 +25,7 @@
 
 <script lang="ts">
 import { Component, Model, Prop, Vue } from 'vue-property-decorator';
+import Header from '../../.history/src/components/MarketPlaceHeader_20220714211316.vue';
 @Component
 export default class MarketPlaceCart extends Vue {
   // @Model('change') goods_list!: { [key: string]: any }[];
@@ -43,7 +44,7 @@ export default class MarketPlaceCart extends Vue {
       },
       0
     );
-    return sum * this.dollar_rate;
+    return (sum * this.dollar_rate).toFixed(2);
   }
 
   get dollar_rate() {
@@ -64,10 +65,13 @@ export default class MarketPlaceCart extends Vue {
   width: 25vw;
   height: 100%;
   position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   right: 0;
   top: 0;
+  background-color: #818181;
+  border-left: 1px transparent solid;
 
   &__products-container__table-header {
     display: flex;
@@ -97,6 +101,7 @@ export default class MarketPlaceCart extends Vue {
     background-color: white;
     justify-content: center;
     align-items: center;
+    height: 50px;
     // background-color: rgb(189, 198, 198);
 
     &__title {
@@ -111,6 +116,8 @@ export default class MarketPlaceCart extends Vue {
     @extend .container
     flex-direction: column;
     flex-grow: 1;
+    overflow-y: auto;
+    max-height: calc(100% - 100px);
   }
 
   &__total-price-container {

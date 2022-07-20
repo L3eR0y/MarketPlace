@@ -4,7 +4,13 @@
       {{ title }}
     </div>
     <div class="header__icons-container">
-      <div class="header__icons-container__cart"></div>
+      <div class="header__icons-container__cart">
+        <div class="svg_icon">
+          <svg viewBox="0 0 10 18" xmlns="http://www.w3.org/2000/svg">
+            <path :d="currency_icon" />
+          </svg>
+        </div>
+      </div>
       <div class="header__icons-container__user"></div>
     </div>
   </div>
@@ -12,9 +18,11 @@
 
 <script lang="ts">
 import { Vue, Prop, Component } from 'vue-property-decorator';
+import { mdiCurrencyUsd } from '@mdi/js';
 @Component({})
 export default class Header extends Vue {
   @Prop({ default: '' }) title!: string;
+  currency_icon: any = mdiCurrencyUsd;
 }
 </script>
 
@@ -26,6 +34,11 @@ export default class Header extends Vue {
   height: 50px;
   margin-left: 5px;
   margin-right: 5px;
+}
+
+.svg_icon {
+  width: 50px;
+  height: 50px;
 }
 
 .header {
@@ -50,6 +63,9 @@ export default class Header extends Vue {
 
     &__cart {
       @extend .icon;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     &__user {

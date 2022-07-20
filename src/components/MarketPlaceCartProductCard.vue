@@ -1,12 +1,15 @@
 <template>
   <div class="product" :key="product.id">
-    <div>
-      <div>Наименование и описание товара</div>
-      <div>
-        <div>Фото</div>
-        <div>{{ product.product_name }}</div>
+    <div class="product__description">
+      <div class="product__description__label">
+        Наименование и описание товара
       </div>
+      <!-- <div class="product__description__photo">
+        <div style=""></div>
+      </div> -->
+      <div class="product__description__name">{{ product.product_name }}</div>
     </div>
+    <div class="product__separator"></div>
     <div class="product__price-and-count">
       <div class="product__price-and-count__count">
         <div class="product__price-and-count__count__label">Количество</div>
@@ -44,7 +47,7 @@ export default class MarketPlaceCartProductCard extends Vue {
   }
 
   getPrice(cost: number) {
-    return cost * this.dollar_rate;
+    return (cost * this.dollar_rate).toFixed(2);
   }
 
   onDeleteClick(product: any) {
@@ -60,15 +63,36 @@ export default class MarketPlaceCartProductCard extends Vue {
   background-color: #ffffff;
   color: black;
   border-radius: 5px;
-  &__name {
+  margin: 10px 10px 0px 10px;
+
+  &__description {
     display: flex;
-    // white-space: nowrap;
-    // overflow: hidden;
-    // text-overflow: ellipsis;
+    flex-wrap: wrap;
+
+    &__label {
+      width: 100%;
+      padding: 10px 0px;
+      background-color: #e7e5a5;
+      border-radius: 3px;
+    }
+
+    &__photo {
+      max-width: 30%;
+      padding: 20px;
+      flex-grow: 1;
+    }
+
+    &__name {
+      // max-width: 70%;
+      padding: 10px;
+      text-align: left;
+      flex-grow: 1;
+    }
   }
 
   &__price-and-count {
     display: flex;
+    font-size: 0.9rem;
 
     &__count {
       flex-grow: 1;
