@@ -1,16 +1,12 @@
 <template>
   <div class="goods">
-    <template v-for="good in goods">
-      <div class="goods-list" :key="good.group_name">
-        <div class="goods-list__title">{{ good.group_name }}</div>
-        <template v-for="product in good.products">
-          <market-place-goods-list-item
-            @click="onAddToCart"
-            :value="product"
-            :key="product.id"
-          />
-        </template>
-      </div>
+    <template v-for="(good, index) in goods">
+      <market-place-product-card
+        :products="good"
+        :product-type-label="good.group_name"
+        :key="index"
+        @click="onAddToCart"
+      />
     </template>
   </div>
 </template>
@@ -21,10 +17,6 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 export default class MarketPlaceGoods extends Vue {
   @Prop() goods!: { [key: string]: any }[];
 
-  created() {
-    console.log('Created Component', this.goods);
-  }
-
   onAddToCart(product: any) {
     this.$store.commit('addProductToCart', product);
   }
@@ -33,7 +25,9 @@ export default class MarketPlaceGoods extends Vue {
 
 <style lang="stylus">
 .goods {
-  flex-grow: 1;
+  background-color: #b1afaf;
+  padding: 10px;
+  width: 75vw;
 }
 .goods-list {
   display: flex;

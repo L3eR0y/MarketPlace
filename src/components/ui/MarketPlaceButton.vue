@@ -1,6 +1,5 @@
 <template>
   <div class="mp-btn" @click="onClick" :style="{ backgroundColor: bgColor }">
-    <!-- <div>1</div> -->
     <div>{{ label.toUpperCase() }}</div>
   </div>
 </template>
@@ -27,5 +26,7 @@ export default class MarketPlaceButton extends Vue {
   border-radius: 3px;
   padding: 4px 16px;
   cursor: pointer;
+  align-items: center;
+  justify-content: center;
 }
 </style>

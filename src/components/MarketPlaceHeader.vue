@@ -3,26 +3,54 @@
     <div class="header__title">
       {{ title }}
     </div>
-    <div class="header__icons-container">
-      <div class="header__icons-container__cart">
-        <div class="svg_icon">
-          <svg viewBox="0 0 10 18" xmlns="http://www.w3.org/2000/svg">
-            <path :d="currency_icon" />
-          </svg>
+    <div class="header__container">
+      <div class="header__container__dollar_rate">
+        <div class="header__container__dollar_rate__title">
+          Установите курс доллара
+        </div>
+        <div class="header__container__dollar_rate__value">
+          <input
+            class="dollar_rate_input"
+            type="number"
+            v-model="dollar_rate"
+          />
+          <mp-btn
+            :bg-color="'#93db80'"
+            :label="'Установить'"
+            @click="onSetDollarRateClick(dl_rate)"
+          ></mp-btn>
         </div>
       </div>
-      <div class="header__icons-container__user"></div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Prop, Component } from 'vue-property-decorator';
-import { mdiCurrencyUsd } from '@mdi/js';
 @Component({})
 export default class Header extends Vue {
   @Prop({ default: '' }) title!: string;
-  currency_icon: any = mdiCurrencyUsd;
+  dl_rate = 0;
+
+  created() {
+    this.dl_rate = this.dollar_rate;
+  }
+
+  get dollar_rate() {
+    return this.$store.getters?.dollarRate;
+  }
+
+  set dollar_rate(value: number) {
+    this.dl_rate = value;
+  }
+
+  onDollarRateInput(value: number) {
+    console.log(value);
+  }
+
+  onSetDollarRateClick(value: number) {
+    this.$store.commit('setDollarRate', this.dl_rate);
+  }
 }
 </script>
 
@@ -57,19 +85,29 @@ export default class Header extends Vue {
     display: flex;
   }
 
-  &__icons-container {
+  &__container {
     display: flex;
     padding-right: 10px;
 
-    &__cart {
-      @extend .icon;
+    &__dollar_rate {
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-    }
 
-    &__user {
-      @extend .icon;
+      &__title {
+        font-size: 20px;
+        display: flex;
+      }
+      &__value {
+        font-size: 20px;
+        display: flex;
+
+        .dollar_rate_input {
+          font-size: 20px;
+          width: 120px;
+          margin-right: 5px;
+        }
+      }
     }
   }
 }

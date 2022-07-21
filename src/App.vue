@@ -18,8 +18,12 @@ export default class App extends Vue {
   header_title = 'MARKET PLACE';
   goods: { [key: string]: any } = [];
   selected_goods: { [key: string]: any }[] = [];
+  timer: number | null = null;
   created() {
     this.getGoods();
+    this.$nextTick(() => {
+      this.timer = setInterval(this.getGoods, 15000);
+    });
   }
 
   getGoods() {
@@ -55,7 +59,6 @@ export default class App extends Vue {
   }
 
   onAddToCart(product: any) {
-    console.log('PRODUCTS: ', product);
     let _exist = this.selected_goods.findIndex(
       (item) => item._id === product._id
     );

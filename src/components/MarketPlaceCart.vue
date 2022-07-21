@@ -1,11 +1,11 @@
 <template>
   <div class="cart">
     <div class="cart__title-container">
-      <div class="cart__title-container__title">CART</div>
+      <div class="cart__title-container__title">КОРЗИНА</div>
     </div>
     <div class="cart__products-container">
       <template v-for="product in goods_list">
-        <mp-cart-item :product="product" :key="product._id" />
+        <market-place-product-cart-item :product="product" :key="product._id" />
       </template>
     </div>
     <div class="cart__total-price-container">
@@ -70,7 +70,7 @@ export default class MarketPlaceCart extends Vue {
   flex-direction: column;
   right: 0;
   top: 0;
-  background-color: #818181;
+  background-color: #cdcccc;
   border-left: 1px transparent solid;
 
   &__products-container__table-header {

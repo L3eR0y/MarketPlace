@@ -14,6 +14,21 @@ const getters: { [key: string]: any } = {
   dollarRate: (state: any, getters: { [key: string]: any }, rootState: any) => {
     return state.dollarRate;
   },
+  productById:
+    (state: any, getters: { [key: string]: any }, rootState: any) =>
+    (id: string) => {
+      const _product =
+        state.cartProducts.filter((item: any) => item._id === id)?.[0] || null;
+      return _product;
+    },
+  productCountById:
+    (state: any, getters: { [key: string]: any }, rootState: any) =>
+    (id: string) => {
+      const _count =
+        state.cartProducts.filter((item: any) => item._id === id)?.[0]?.count ||
+        0;
+      return _count;
+    },
 };
 
 const mutations: { [key: string]: any } = {

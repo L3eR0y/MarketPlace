@@ -1,7 +1,7 @@
 <template>
   <div class="goods-list-item" @click="onListItemClick(value)">
     <div class="goods-list-item__title-container">
-      <div>{{ value.product_name }}</div>
+      <div>{{ `${value.product_name} (${value.count})` }}</div>
     </div>
     <div class="goods-list-item__price-container">
       <div class="goods-list-item__price-container__cost">
